@@ -79,7 +79,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME' : 'webdb',
         'USER' : 'root',
-        'PASSWORD' : 'Today123@GZ',
+        'PASSWORD' : '891024',
         'HOST':'127.0.0.1',
         'PORT':'3306',
         'default-character-set' : 'utf8',

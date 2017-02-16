@@ -6,3 +6,7 @@ django
 //mac:
 pip install django
 pip install MySQL-python
+
+//superuser:
+admin
+Today123

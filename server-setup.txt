@@ -1,3 +1,4 @@
+//centos
 sudo yum install mysql-devel
 sudo yum install MySQL-python
 django

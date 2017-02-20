@@ -1,6 +1,9 @@
+from __future__ import absolute_import
 from django.conf.urls import url
 
 from polls import views
+
+app_name = "polls"
 
 urlpatterns = [
     url(r'^$', views.index, name='index'),

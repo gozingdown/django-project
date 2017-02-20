@@ -77,14 +77,8 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME' : 'webdb',
-        'USER' : 'root',
-        'PASSWORD' : '891024',
-        'HOST':'127.0.0.1',
-        'PORT':'3306',
-        'default-character-set' : 'utf8',
         'OPTIONS': {
-            'init_command': 'SET default_storage_engine=INNODB',
+            'read_default_file':'mysite/mysql.cnf'
         },
     }
 }

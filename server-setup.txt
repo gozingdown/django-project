@@ -2,12 +2,17 @@
 sudo yum install mysql-devel
 sudo yum install MySQL-python
 django
+db-password:Today123@GZ
 
 
 //mac:
 pip install django
 pip install MySQL-python
+db-password:891024
 
 //superuser:
 admin
 Today123
+
+//install the Polls app
+pip install dist/django-polls-0.1.tar.gz

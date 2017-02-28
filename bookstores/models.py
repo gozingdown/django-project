@@ -21,3 +21,10 @@ class Store(models.Model):
     name = models.CharField(max_length=300)
     books = models.ManyToManyField(Book)
     registered_users = models.PositiveIntegerField()
+
+
+'''
+Important Note
+To exam the query used:
+str(queryset.query)
+'''

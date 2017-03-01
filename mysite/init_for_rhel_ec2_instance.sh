@@ -5,29 +5,13 @@ if [ "$(id -u)" != "0" ]; then
 fi
 
 install_pip() {
+    #prerequisite: yum -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
     if [[ `pip --version` == *"site-packages"* ]]; then
         echo '[ALREADY_INSTALLED]pip already installed' >&1
         return 0
     fi
-    #install wget
-    yum -y install wget
 
-    #install python setuptools
-    if [ "`rpm -qa | grep python-setuptools`" = "" ]; then
-        yum -y install python-setuptools
-        if [ `rpm -qa | grep python-setuptools` = "" ]; then
-            echo '[FAILURE]setuptools is not installed' >&2
-            exit 1
-        else
-            echo '[SUCCESS]setuptools installed successfully' >&1
-        fi
-    fi
-    
-    wget https://bootstrap.pypa.io/get-pip.py
-
-    python get-pip.py
-
-    rm get-pip.py
+    yum -y install python2-pip
 
     if [[ ! `pip --version` == *"site-packages"* ]]; then
         echo '[FAILURE]fail to install pip' >&2
@@ -36,7 +20,7 @@ install_pip() {
         echo '[SUCCESS]pip installed successfully' >&1
     fi
 
-    pip --version
+    pip install --upgrade pip
 }
 
 install_git() {
@@ -75,7 +59,7 @@ install_virtualenvwrapper() {
         echo '[ALREADY_INSTALLED]virtualenvwrapper already installed' >&1
         return 0
     fi
-    sudo pip install virtualenvwrapper
+    pip install virtualenvwrapper
     export WORKON_HOME=$HOME/.virtualenvs
     export PROJECT_HOME=$HOME/Devel
     source /usr/bin/virtualenvwrapper.sh
@@ -85,7 +69,14 @@ install_virtualenvwrapper() {
         echo '[SUCCESS]virtualenvwrapper installed successfully' >&1
     fi
 }
+
 ##################################start initializing
+
+yum -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+
+yum -y install deltarpm
+
+yum makecache
 
 yum -y install vim
 
@@ -100,4 +91,9 @@ install_git
 #install virtialenvwraper
 install_virtualenvwrapper
 
+yum -y update
+
 ##################################end of initializing
+
+
+#ls -l /etc/yum.repos.d/redhat-rhui.repo

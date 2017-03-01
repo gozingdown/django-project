@@ -17,10 +17,10 @@ install_pip() {
         echo '[FAILURE]fail to install pip' >&2
         exit 1
     else
+        pip install --upgrade pip
         echo '[SUCCESS]pip installed successfully' >&1
     fi
-
-    pip install --upgrade pip
+    
 }
 
 install_git() {

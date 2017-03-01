@@ -10,9 +10,8 @@ install_pip() {
         return 0
     fi
     #install wget
-    if [ "`rpm -qa | grep setuptools`" = "" ]; then
-        yum -y install wget
-    fi
+    yum -y install wget
+
     #install python setuptools
     if [ "`rpm -qa | grep python-setuptools`" = "" ]; then
         yum -y install python-setuptools
@@ -69,20 +68,36 @@ install_git() {
     fi
 }
 
+install_virtualenvwrapper() {
+    #prerequisite: pip
+
+    if [[ "`pip list | grep virtualenvwrapper`" == *"virtualenvwrapper"* ]]; then
+        echo '[ALREADY_INSTALLED]virtualenvwrapper already installed' >&1
+        return 0
+    fi
+    sudo pip install virtualenvwrapper
+    export WORKON_HOME=$HOME/.virtualenvs
+    export PROJECT_HOME=$HOME/Devel
+    source /usr/bin/virtualenvwrapper.sh
+    if [[ ! "`pip list | grep virtualenvwrapper`" == *"virtualenvwrapper"* ]]; then
+        echo '[FAILURE]fail to install virtualenvwrapper' >&2
+    else
+        echo '[SUCCESS]virtualenvwrapper installed successfully' >&1
+    fi
+}
 ##################################start initializing
 
-if [ "`rpm -qa | grep vim`" = "" ]; then
-    yum -y install vim
-fi
+yum -y install vim
 
-if [ "`rpm -qa | grep python-setuptools`" = "" ]; then
-    yum -y install wget
-fi
+yum -y install wget
 
 #install pip - start
 install_pip
 
 #install Git
 install_git
+
+#install virtialenvwraper
+install_virtualenvwrapper
 
 ##################################end of initializing

@@ -70,6 +70,19 @@ install_virtualenvwrapper() {
     fi
 }
 
+install_mysql() {
+
+    yum -y install https://dev.mysql.com/get/mysql57-community-release-el7-9.noarch.rpm
+
+    yum -y install mysql-community-server
+
+    systemctl start mysqld.service
+
+    grep 'A temporary password is generated for root@localhost' /var/log/mysqld.log |tail -1 > ~/mysql_password
+
+    echo '[SUCCESS]mysql installed successfully' >&1
+}
+
 ##################################start initializing
 
 yum -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
@@ -90,6 +103,10 @@ install_git
 
 #install virtialenvwraper
 install_virtualenvwrapper
+
+pip install django
+
+install_mysql
 
 yum -y update
 

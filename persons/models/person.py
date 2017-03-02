@@ -11,7 +11,18 @@ To do so, create a models package.
 Remove models.py and create a myapp/models/ directory with an __init__.py file 
 and the files to store your models. You must import the models in the __init__.py file.
 '''
+class AuthorManager(models.Manager):
+    def get_queryset(self):
+        return super(AuthorManager, self).get_queryset().filter(role='A')
+
+class EditorManager(models.Manager):
+    def get_queryset(self):
+        return super(EditorManager, self).get_queryset().filter(role='E')
+
 class Person(models.Model):
+    first_name = models.CharField(max_length=50, null=True)
+    last_name = models.CharField(max_length=50, null=True)
+    role = models.CharField(max_length=1, choices=(('A', 'Author'), ('E', 'Editor')), default = 'A')
     people = models.Manager()
-    name = models.CharField(max_length=50)
-    address = models.CharField(max_length=80)
+    authors = AuthorManager()
+    editors = EditorManager()

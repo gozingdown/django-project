@@ -19,10 +19,38 @@ class EditorManager(models.Manager):
     def get_queryset(self):
         return super(EditorManager, self).get_queryset().filter(role='E')
 
+class PersonQuerySet(models.QuerySet):
+    def authors(self):
+        return self.filter(role='A')
+
+    #Available on both Manager and QuerySet
+    authors.queryset_only = False
+
+    def editors(self):
+        return self.filter(role='E')
+
+    #make editor available only on QuerySet.
+    editors.queryset_only = True
+
+class PersonManager(models.Manager):
+    def get_queryset(self):
+        return super(PersonManager, self).get_queryset()
+
+    def dick(self):
+        return self.get_queryset().filter(first_name__contains='dick')
+
 class Person(models.Model):
     first_name = models.CharField(max_length=50, null=True)
     last_name = models.CharField(max_length=50, null=True)
     role = models.CharField(max_length=1, choices=(('A', 'Author'), ('E', 'Editor')), default = 'A')
-    people = models.Manager()
+    CustomManager = PersonManager.from_queryset(PersonQuerySet)
+    people = CustomManager() #default_mananger by default because it's the first manager
     authors = AuthorManager()
     editors = EditorManager()
+    objects = models.Manager()
+
+    class Meta:
+        base_manager_name = 'objects'
+
+
+

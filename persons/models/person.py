@@ -50,6 +50,7 @@ class Person(models.Model):
     objects = models.Manager()
 
     class Meta:
+        #https://docs.djangoproject.com/en/1.10/topics/db/managers/#django.db.models.Model._base_manager
         base_manager_name = 'objects'
 
 

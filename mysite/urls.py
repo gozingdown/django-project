@@ -17,8 +17,13 @@ from __future__ import absolute_import
 from django.conf.urls import url, include
 from django.contrib import admin
 
+#This only works when you set DEBUG=False
+# https://docs.djangoproject.com/en/1.10/topics/http/views/#customizing-error-views
+handler404 = 'mysite.views.my_custom_page_not_found_view'
+
 urlpatterns = [
 	url(r'^polls/', include('polls.urls')),
     url(r'^admin/', admin.site.urls),
     url(r'^persons/', include('persons.urls')),
 ]
+

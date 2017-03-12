@@ -49,9 +49,11 @@ class Person(models.Model):
     editors = EditorManager()
     objects = models.Manager()
 
+    def __str__(self):
+        return 'first_name:%s,last_name:%s,role:%s' % (self.first_name, self.last_name, self.role)
+
     class Meta:
         #https://docs.djangoproject.com/en/1.10/topics/db/managers/#django.db.models.Model._base_manager
         base_manager_name = 'objects'
-
 
 

@@ -1,10 +1,12 @@
 from django.http import HttpResponse, Http404
 from persons.models import Person
+from django.views.decorators.http import require_POST,require_http_methods
 
 def name(request, name =  'default_name'):
     html = '<html><body>name:' + name + '</body></html>'
     return HttpResponse(html)
 
+@require_http_methods([ "POST"])
 def detail(request, person_id):
     '''
     https://docs.djangoproject.com/en/1.10/topics/http/views/

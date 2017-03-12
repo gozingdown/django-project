@@ -52,6 +52,14 @@ class Person(models.Model):
     def __str__(self):
         return 'first_name:%s,last_name:%s,role:%s' % (self.first_name, self.last_name, self.role)
 
+    #for redirect() with model objects:
+    #https://docs.djangoproject.com/en/1.10/topics/http/shortcuts/#redirect
+    #URL namespace:
+    #https://docs.djangoproject.com/en/1.10/topics/http/urls/#url-namespaces-and-included-urlconfs
+    def get_absolute_url(self):
+        from django.urls import reverse
+        return reverse('persons:persons-detail', kwargs={'person_id':self.id})
+
     class Meta:
         #https://docs.djangoproject.com/en/1.10/topics/db/managers/#django.db.models.Model._base_manager
         base_manager_name = 'objects'

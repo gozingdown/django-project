@@ -17,5 +17,3 @@ def detail(request, person_id):
     '''
     p = get_object_or_404(Person, pk=int(person_id))
     return render(request, 'persons/detail.html', {'p':p})
-
-

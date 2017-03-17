@@ -1,7 +1,8 @@
 from django.http import HttpResponse, Http404
 from persons.models import Person
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404,redirect
 from django.views.decorators.http import require_POST,require_http_methods
+from persons.forms import NameForm
 
 def name(request, name =  'default_name'):
     html = '<html><body>name:' + name + '</body></html>'
@@ -17,3 +18,19 @@ def detail(request, person_id):
     '''
     p = get_object_or_404(Person, pk=int(person_id))
     return render(request, 'persons/detail.html', {'p':p})
+
+def get_name(request):
+    if request.method == 'POST':
+        form = NameForm(request.POST)
+        if form.is_valid():
+            # IMPORTANT!!
+            # Since you have name-spaced url configuration, 
+            # you need to mention namespace:view-name pattern in order to reverse it properly (especially from view).
+            # you cannot use redirect('persons-thanks', form.cleaned_data['your_name'])
+            return redirect('persons:persons-thanks', form.cleaned_data['your_name'])
+    else:
+        form = NameForm()
+    return render(request,'persons/name.html', {'form':form})
+
+def thanks(request, name):
+    return render(request, 'persons/thanks.html', {'name':name})

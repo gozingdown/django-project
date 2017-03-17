@@ -32,10 +32,10 @@ class PersonMiddlewareTwo(object):
         Expectation: process_exception of PersonMiddlewareOne will be skipped. 
         '''
         print __name__+'.process_exception.call'
-        p = get_object_or_404(Person, pk=int(1))
-        return render(request, 'persons/detail.html', {'p':p})
+        #p = get_object_or_404(Person, pk=int(1))
+        #return render(request, 'persons/detail.html', {'p':p})
         ##################End - Test return HttpResponse instead of None
-        #return None
+        return None
 
 '''
 Summary:

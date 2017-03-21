@@ -5,9 +5,59 @@
     {{ form }}
     <input type="submit" value="Submit" />
 </form>
+<hr>
 
 <form>
-{{ form2 }}
+<table>
+<!-- note: to use form.as_table, you have to put it in a <table> element -->
+{{ form2.as_table }}
+</table>
+</form>
+<hr>
+
+<!--Rendering fields manually-->
+<form>
+{{ form2.non_field_errors }}
+<div class="fieldWrapper">
+    {% if form2.subject.errors %}
+        <ol>
+        {% for error in form.subject.errors %}
+            <li><strong>{{ error|escape }}</strong></li>
+        {% endfor %}
+        </ol>
+    {% endif %}
+    {{ form2.subject.label_tag }}
+    {{ form2.subject }}
+    <!--field.field: The Field instance from the form class that this BoundField wraps. You can use it to access Field attributes-->
+    {{form2.subject.field.max_length}}
+</div>
+</form>
+
+<hr>
+
+
+
+<!-- Looping over the form’s fields¶ -->
+<form>
+{% for field in form2 %}
+    <div class="fieldWrapper">
+        {{ field.errors }}
+        {{ field.label_tag }} {{ field }}
+        {% if field.help_text %}
+        <p class="help">{{ field.help_text|safe }}</p>
+        {% endif %}
+    </div>
+{% endfor %}
+</form>
+<hr>
+
+<!-- Resuable form templates -->
+<form>
+{% include "persons/form_snippet.html" with form=form2%}
 </form>
 </body>
 </html>
+
+
+
+

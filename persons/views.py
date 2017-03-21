@@ -2,7 +2,7 @@ from django.http import HttpResponse, Http404
 from persons.models import Person
 from django.shortcuts import render, get_object_or_404,redirect
 from django.views.decorators.http import require_POST,require_http_methods
-from persons.forms import NameForm
+from persons.forms import NameForm, ContactForm
 
 def name(request, name =  'default_name'):
     html = '<html><body>name:' + name + '</body></html>'
@@ -30,7 +30,9 @@ def get_name(request):
             return redirect('persons:persons-thanks', form.cleaned_data['your_name'])
     else:
         form = NameForm()
-    return render(request,'persons/name.html', {'form':form})
+        #http://stackoverflow.com/questions/604266/django-set-default-form-values
+        form2 = ContactForm(initial = {'message':'initial message'})
+    return render(request,'persons/name.html', {'form':form, 'form2':form2})
 
 def thanks(request, name):
     return render(request, 'persons/thanks.html', {'name':name})

@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'polls.apps.PollsConfig',
     'places.apps.PlacesConfig',
     'bookstores.apps.BookstoresConfig',
-    'persons.apps.PersonsConfig'
+    'persons.apps.PersonsConfig',
+    'books.apps.BooksConfig'
 ]
 
 MIDDLEWARE = [

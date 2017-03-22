@@ -1,7 +1,6 @@
 # django-project
 ==========================================================
-  Some notes on Session
-==========================================================
+Some notes on Session:
 https://docs.djangoproject.com/en/1.10/topics/http/sessions/#using-sessions-out-of-views
 
 You can access session via 
@@ -26,8 +25,7 @@ Access SessionStore as dict.
 
 
 ==========================================================
-  Some notes on Form and Field Validation
-==========================================================
+Some notes on Form and Field Validation
 https://docs.djangoproject.com/en/1.10/ref/forms/validation/#form-and-field-validation
 
 Field.to_python()
@@ -43,8 +41,7 @@ FOrm.clean()
 
 
 ===========================================================
-  Some notes on Model Validation
-===========================================================
+Some notes on Model Validation
 There are three steps involved in validating a model:
 
 1. Validate the model fields - Model.clean_fields()

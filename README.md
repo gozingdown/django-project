@@ -49,3 +49,17 @@ There are three steps involved in validating a model:
 3. Validate the field uniqueness - Model.validate_unique()
 
 All three steps are performed when you call a model’s full_clean() method.
+
+
+===========================================================
+Some notes on ModelForm Validation
+
+There are two main steps involved in validating a ModelForm:
+
+1. Validating the form
+2. Validating the model instance
+
+Just like normal form validation, model form validation is triggered implicitly when calling is_valid() or accessing the errors attribute and explicitly when calling full_clean(), although you will typically not use the latter method in practice.
+
+Model validation (Model.full_clean()) is triggered from within the form validation step, right after the form’s clean() method is called.
+

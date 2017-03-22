@@ -1,6 +1,7 @@
 # django-project
 ==========================================================
-Some notes on Session:
+Some notes on Session
+
 https://docs.djangoproject.com/en/1.10/topics/http/sessions/#using-sessions-out-of-views
 
 You can access session via 
@@ -26,6 +27,7 @@ Access SessionStore as dict.
 
 ==========================================================
 Some notes on Form and Field Validation
+
 https://docs.djangoproject.com/en/1.10/ref/forms/validation/#form-and-field-validation
 
 Field.to_python()
@@ -42,6 +44,7 @@ FOrm.clean()
 
 ===========================================================
 Some notes on Model Validation
+
 There are three steps involved in validating a model:
 
 1. Validate the model fields - Model.clean_fields()
@@ -62,4 +65,3 @@ There are two main steps involved in validating a ModelForm:
 Just like normal form validation, model form validation is triggered implicitly when calling is_valid() or accessing the errors attribute and explicitly when calling full_clean(), although you will typically not use the latter method in practice.
 
 Model validation (Model.full_clean()) is triggered from within the form validation step, right after the form’s clean() method is called.
-

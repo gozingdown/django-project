@@ -38,3 +38,14 @@ FOrm.clean()
 'These methods are run in the order given above, one field at a time. That is, for each field in the form (in the order they are declared in the form definition), the Field.clean() method (or its override) is run, then clean_<fieldname>(). Finally, once those two methods are run for every field, the Form.clean() method, or its override, is executed whether or not the previous methods have raised errors.'
 
 'As mentioned, any of these methods can raise a ValidationError. For any field, if the Field.clean() method raises a ValidationError, any field-specific cleaning method is not called. However, the cleaning methods for all remaining fields are still executed.'
+
+
+===========================================================
+Some notes on Model Validation
+There are three steps involved in validating a model:
+
+1. Validate the model fields - Model.clean_fields()
+2. Validate the model as a whole - Model.clean()
+3. Validate the field uniqueness - Model.validate_unique()
+
+All three steps are performed when you call a model’s full_clean() method.

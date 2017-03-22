@@ -8,11 +8,19 @@ You can access session via
 2. Session model 
 3. request.session in a view
 
-But you cannot modify session data via Session model. Unless you overwrite the session.session_data field, which is actually encoded.
+[1] You can modiy a session like this: request.session['xx']='yy'
+
+Note for this case, where Session is NOT modified, because this alters request.session['foo'] instead of request.session.
+
+request.session['foo']['bar'] = 'baz'
+
+
+
+[2] But you cannot modify session data via Session model. Unless you overwrite the session.session_data field, which is actually encoded.
+
 If via Session model, you can only access session data via get_decoded().
 
-
-You can access (udpdate) session out side a view via SessionStore.
+[3] You can access (udpdate) session out side a view via SessionStore.
 Access SessionStore as dict.
 
 

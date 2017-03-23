@@ -7,11 +7,13 @@
 </form>
 <hr>
 
-<form>
+<form  action="/persons/your-name/" method="post">
 <table>
-<!-- note: to use form.as_table, you have to put it in a <table> element -->
-{{ form2.as_table }}
-</table>
+    <!-- note: to use form.as_table, you have to put it in a <table> element -->
+    {% csrf_token %}
+    {{ form2.as_table }}
+    </table>
+    <input type="submit" value="Submit" />
 </form>
 <hr>
 

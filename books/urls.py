@@ -7,5 +7,6 @@ app_name='books'
 
 urlpatterns = [
 	url(r'^$', views.index),
-    url(r'^(?P<id>[0-9]+)/$', views.get_book),
+    url(r'^(?P<id>[0-9]+)/$', views.get_book,name='books.get_book'),
+    url(r'^add-book/$', views.add_book,name='books.add_book'),
 ]

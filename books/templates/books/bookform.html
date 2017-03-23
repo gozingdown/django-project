@@ -1,5 +1,12 @@
 <html>
 <body>
+<form action='/books/add-book/' method='POST'>
+<br>
+{% csrf_token %}
 {{ bookform }}
+{% if is_new is not True %}
+<input type='submit' value='submit'>
+{% endif %}
+</form>
 </body>
 </html>

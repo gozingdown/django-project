@@ -33,11 +33,32 @@ def get_name(request):
         form = NameForm()
         #http://stackoverflow.com/questions/604266/django-set-default-form-values
         form2 = ContactForm(initial = {'message':'initial message'})
-        # form set:
-        NameFormSet = formset_factory(NameForm, extra=2, max_num=1)
+
+        # Formset 1:
+        NameFormSet = formset_factory(NameForm, extra=2, max_num=3)
         nameFormSet = NameFormSet(initial=[{'your_name':'default_your_name_1'},{'your_name':'default_your_name_2'}])
         for nameForm in nameFormSet:
             print(nameForm)
+
+        # Formset 2:
+        NameFormSet2 = formset_factory(NameForm, max_num=2)
+        data = {
+            'form-TOTAL_FORMS' : '2',
+            'form-INITIAL_FORMS': '0',
+            'form-MAX_NUM_FORMS': '',
+            'form-0-your_name' : 'adsfasfadsfasdfasd',
+            'form-1-your_name' : '',#missing but will pass validation
+        }
+        nameFormSet2 = NameFormSet2(data)
+        for nameForm in nameFormSet2:
+            print(nameForm)
+        print(nameFormSet2.is_valid()) 
+        '''
+        Note: even though form-1-your_name is missing, the validation still passes, because (from docs):
+        "However, form fields of formsets won't include the required attribute as that validation 
+        may be incorrect when adding and deleting forms."
+        '''
+        print(nameFormSet2.errors)
     return render(request,'persons/name.html', {'form':form, 'form2':form2})
 
 def thanks(request, name):

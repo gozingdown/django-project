@@ -3,6 +3,7 @@ from persons.models import Person
 from django.shortcuts import render, get_object_or_404,redirect
 from django.views.decorators.http import require_POST,require_http_methods
 from persons.forms import NameForm, ContactForm
+from  django.forms import formset_factory
 
 def name(request, name =  'default_name'):
     html = '<html><body>name:' + name + '</body></html>'
@@ -32,6 +33,11 @@ def get_name(request):
         form = NameForm()
         #http://stackoverflow.com/questions/604266/django-set-default-form-values
         form2 = ContactForm(initial = {'message':'initial message'})
+        # form set:
+        NameFormSet = formset_factory(NameForm, extra=2, max_num=1)
+        nameFormSet = NameFormSet(initial=[{'your_name':'default_your_name_1'},{'your_name':'default_your_name_2'}])
+        for nameForm in nameFormSet:
+            print(nameForm)
     return render(request,'persons/name.html', {'form':form, 'form2':form2})
 
 def thanks(request, name):

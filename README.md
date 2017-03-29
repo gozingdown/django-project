@@ -35,7 +35,7 @@ Field.validate()
 Field.run_validators()
 Field.clean()
 Form.clean_<fieldname>()
-FOrm.clean()
+Form.clean()
 
 'These methods are run in the order given above, one field at a time. That is, for each field in the form (in the order they are declared in the form definition), the Field.clean() method (or its override) is run, then clean_<fieldname>(). Finally, once those two methods are run for every field, the Form.clean() method, or its override, is executed whether or not the previous methods have raised errors.'
 

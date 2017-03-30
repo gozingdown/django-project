@@ -39,7 +39,10 @@ def get_name(request):
         nameFormSet = NameFormSet(initial=[{'your_name':'default_your_name_1'},{'your_name':'default_your_name_2'}])
         for nameForm in nameFormSet:
             print(nameForm)
-
+        print("----------management_form")
+        #https://docs.djangoproject.com/en/1.10/topics/forms/formsets/#understanding-the-managementform
+        print(nameFormSet.management_form)
+        print("----------management_form end")
         # Formset 2:
         NameFormSet2 = formset_factory(NameForm, max_num=2)
         data = {
@@ -59,7 +62,7 @@ def get_name(request):
         may be incorrect when adding and deleting forms."
         '''
         print(nameFormSet2.errors)
-    return render(request,'persons/name.html', {'form':form, 'form2':form2})
+    return render(request,'persons/name.html', {'form':form, 'form2':form2, 'form3':nameFormSet})
 
 def thanks(request, name):
     return render(request, 'persons/thanks.html', {'name':name})

@@ -57,6 +57,13 @@
 <form>
 {% include "persons/form_snippet.html" with form=form2%}
 </form>
+<hr>
+<form>
+<!-- Note, with <table> tag, form3 will automatically call as_table(), otherwise it will not be shown as table-->
+<table>
+ {{ form3 }}
+ </table>
+</form>
 </body>
 </html>
 

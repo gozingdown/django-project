@@ -35,6 +35,7 @@ def get_name(request):
         form2 = ContactForm(initial = {'message':'initial message'})
 
         # Formset 1:
+        # if len(initial) > max_num, max_num will not be used
         NameFormSet = formset_factory(NameForm, extra=2, max_num=3)
         nameFormSet = NameFormSet(initial=[{'your_name':'default_your_name_1'},{'your_name':'default_your_name_2'}])
         for nameForm in nameFormSet:

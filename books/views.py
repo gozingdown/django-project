@@ -28,3 +28,13 @@ def add_book(request):
         # authorFormSet = AuthorFormSet(queryset=Author.objects.none())
 
         return render(request, 'books/bookform.html', {'bookform':bookform,'authorFormSet':authorFormSet})
+
+from django.views import View
+class GreetingView(View):
+    greeting = "Good Day"
+
+    def get(self, request):
+        return HttpResponse(self.greeting)
+
+class MorningGreetingView(GreetingView):
+    greeting = "Morning to ya"

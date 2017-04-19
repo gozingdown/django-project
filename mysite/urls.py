@@ -16,6 +16,8 @@ Including another URLconf
 from __future__ import absolute_import
 from django.conf.urls import url, include
 from django.contrib import admin
+from django.conf import settings
+from django.conf.urls.static import static
 
 #This only works when you set DEBUG=False
 # https://docs.djangoproject.com/en/1.10/topics/http/views/#customizing-error-views
@@ -28,3 +30,6 @@ urlpatterns = [
     url(r'^books/', include('books.urls')),
 ]
 
+# put it here, not in the books/urls.py
+if settings.DEBUG is True:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

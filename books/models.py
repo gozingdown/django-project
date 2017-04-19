@@ -80,3 +80,14 @@ class BookForm(ModelForm):
     class Meta:
         model = Book
         fields = ['name', 'authors','is_published']
+
+
+class BookCover(models.Model):
+    name = models.CharField(max_length=100)
+    # need to install Pillow for ImageField
+    cover_img = models.ImageField(upload_to='books')
+
+class BookCoverForm(ModelForm):
+    class Meta:
+        model = BookCover
+        fields = '__all__'

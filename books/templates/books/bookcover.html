@@ -1,0 +1,9 @@
+<html>
+<body>
+<form enctype="multipart/form-data" action='/books/add-bookcover/' method='POST'>
+{% csrf_token %}
+{{ bookCoverForm }}
+<input type='submit' value='submit'>
+</form>
+</body>
+</html>

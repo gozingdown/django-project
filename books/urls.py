@@ -11,4 +11,6 @@ urlpatterns = [
     url(r'^(?P<id>[0-9]+)/$', views.get_book,name='books.get_book'),
     url(r'^add-book/$', views.add_book,name='books.add_book'),
     url(r'^greeting/$', GreetingView.as_view(greeting="G'day")),
+    url(r'^add-bookcover/$', views.add_bookcover,name='books.add_bookcover'),
+    url(r'^get-bookcover/(?P<id>[0-9]+)/$', views.get_bookcover,name='books.get_bookcover'),
 ]

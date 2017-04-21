@@ -1,5 +1,9 @@
 <html>
 <body>
+{% load static %}
+<!-- static/books/heart.png will be used instead of books/static/books/heart.png because it's found first -->
+<img src="{% static "books/heart.png" alt="my image" %}">
+
 <form enctype="multipart/form-data" action='/books/add-bookcover/' method='POST'>
 {% csrf_token %}
 {{ bookCoverForm }}

@@ -3,6 +3,7 @@ from django.conf.urls import url
 from books import views
 from books.views import GreetingView,MorningGreetingView
 
+
 #https://docs.djangoproject.com/en/1.10/topics/http/urls/#url-namespaces-and-included-urlconfs
 app_name='books'
 

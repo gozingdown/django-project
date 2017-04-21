@@ -29,7 +29,5 @@ urlpatterns = [
     url(r'^persons/', include('persons.urls')),
     url(r'^books/', include('books.urls')),
 ]
-
-# put it here, not in the books/urls.py
-if settings.DEBUG is True:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

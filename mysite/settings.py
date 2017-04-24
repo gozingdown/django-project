@@ -89,6 +89,10 @@ DATABASES = {
         'OPTIONS': {
             'read_default_file':'mysite/mysql.cnf'
         },
+        #https://docs.djangoproject.com/en/1.10/topics/testing/overview/#the-test-database
+        'TEST': {
+            'NAME': 'webdb_test'
+        }
     }
 }
 
